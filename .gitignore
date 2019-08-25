@@ -15,7 +15,7 @@ pids
 lib-cov
 
 # Coverage directory used by tools like istanbul
-coverage
+coverage/
 
 # nyc test coverage
 .nyc_output
@@ -29,15 +29,13 @@ bower_components
 # node-waf configuration
 .lock-wscript
 
-# Compiled binary addons (https://nodejs.org/api/addons.html)
+# Compiled binary addons (http://nodejs.org/api/addons.html)
 build/Release
 
 # Dependency directories
 node_modules/
 jspm_packages/
 
-# TypeScript v1 declaration files
-typings/
 
 # Optional npm cache directory
 .npm
@@ -55,7 +53,12 @@ typings/
 .yarn-integrity
 
 # dotenv environment variables file
-.env
+env/.env
+env/.env-stage
 
-# next.js build output
-.next
+
+package-lock.json
+
+dist
+test-report.xml
+yarn.lock
