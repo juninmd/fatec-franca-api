@@ -7,7 +7,7 @@ import { plugins, sigterm } from './plugins.core';
 const { host, port } = env.hapi;
 const { routes } = config.hapi;
 
-const server = new Hapi.Server(<any>{
+const server = new Hapi.Server({
   host,
   port,
   routes,
