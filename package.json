@@ -40,9 +40,9 @@
   },
   "homepage": "https://github.com/juninmd/fatec-franca-api#readme",
   "dependencies": {
+    "@hapi/boom": "^7.4.3",
     "@hapi/hapi": "^18.3.2",
     "@hapi/joi": "^14.3.1",
-    "@types/validator": "^10.11.3",
     "axios": "^0.19.0",
     "dnscache": "^1.0.2",
     "dotenv": "^8.1.0",
@@ -55,10 +55,11 @@
   "devDependencies": {
     "@types/hapi__hapi": "^18.2.5",
     "@types/hapi__joi": "^15.0.3",
+    "@types/hapi__boom": "^7.4.1",
     "@types/jest": "^24.0.17",
-    "@types/nock": "^9.3.1",
     "@types/node": "^12.6.9",
     "@types/sequelize": "^4.28.4",
+    "@types/validator": "^10.11.3",
     "husky": "^3.0.4",
     "jest": "^24.9.0",
     "nock": "^10.0.6",
