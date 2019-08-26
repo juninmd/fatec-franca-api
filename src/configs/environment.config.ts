@@ -14,7 +14,7 @@ export default {
     prefixPath: addEnv({ key: 'PREFIX_PATH', value: '/fatec-franca/v1' }),
     routesTimeout: addEnv<number>({ key: 'ROUTES_TIMEOUT', value: '1000' }),
     host: addEnv({ key: 'HOST', value: '0.0.0.0' }),
-    port: addEnv({ key: 'PORT', value: '9000' }),
+    port: addEnv({ key: 'PORT', value: '8000' }),
   },
   plugins: {
     server: {
