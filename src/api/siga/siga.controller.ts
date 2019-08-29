@@ -10,7 +10,9 @@ import {
   getSchoolGrade,
   login as getLogin,
 } from 'fatec-franca-core-api';
+import { sign } from 'jsonwebtoken';
 import { r } from 'rukia-core-hapi';
+import environment from '../../configs/environment.config';
 import { login } from './siga.schema';
 
 export default class SigaController {
@@ -19,7 +21,8 @@ export default class SigaController {
     try {
       const { login, password } = query;
       const cookie = await getLogin({ username: login, password });
-      return { cookie };
+      const token = sign({ cookie, login, password }, environment.plugins.auth.secret);
+      return { cookie, token };
     } catch (error) {
       return { error };
     }
