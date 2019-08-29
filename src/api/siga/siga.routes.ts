@@ -15,6 +15,7 @@ export default async (server: Hapi.Server) => {
       options: {
         tags: ['api'],
         validate: schema.login,
+        auth: false,
       },
     },
     {
