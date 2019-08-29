@@ -11,7 +11,7 @@ import { addEnv, checkEnvs, loadEnvs } from 'rukia-core-hapi';
 export default {
   env: addEnv({ key: 'NODE_ENV' }),
   hapi: {
-    prefixPath: addEnv({ key: 'PREFIX_PATH', value: '/fatec-franca/v1' }),
+    prefixPath: addEnv({ key: 'PREFIX_PATH', value: '/v1' }),
     routesTimeout: addEnv<number>({ key: 'ROUTES_TIMEOUT', value: '1000' }),
     host: addEnv({ key: 'HOST', value: '0.0.0.0' }),
     port: addEnv({ key: 'PORT', value: '9000' }),
