@@ -24,7 +24,7 @@ export default class SigaController {
       const token = sign({ cookie, login, password }, environment.plugins.auth.secret);
       return { cookie, token };
     } catch (error) {
-      return { error };
+      return { error: error.message };
     }
   }
 
@@ -34,7 +34,7 @@ export default class SigaController {
       const name = await getName(cookie);
       return { name };
     } catch (error) {
-      return { error };
+      return { error: error.message };
     }
   }
 
@@ -44,7 +44,7 @@ export default class SigaController {
       const profile = await getProfile(cookie);
       return { profile };
     } catch (error) {
-      return { error };
+      return { error: error.message };
     }
   }
 
@@ -54,7 +54,7 @@ export default class SigaController {
       const academicCalendar = await getAcademicCalendar(cookie);
       return { academicCalendar };
     } catch (error) {
-      return { error };
+      return { error: error.message };
     }
   }
 
@@ -64,7 +64,7 @@ export default class SigaController {
       const schoolGrade = await getSchoolGrade(cookie);
       return { schoolGrade };
     } catch (error) {
-      return { error };
+      return { error: error.message };
     }
   }
 
@@ -74,7 +74,7 @@ export default class SigaController {
       const history = await getHistory(cookie);
       return { history };
     } catch (error) {
-      return { error };
+      return { error: error.message };
     }
   }
 
@@ -84,7 +84,7 @@ export default class SigaController {
       const schedules = await getSchedules(cookie);
       return { schedules };
     } catch (error) {
-      return { error };
+      return { error: error.message };
     }
   }
 
@@ -94,7 +94,7 @@ export default class SigaController {
       const email = await getRegisteredEmails(cookie);
       return { email };
     } catch (error) {
-      return { error };
+      return { error: error.message };
     }
   }
 
@@ -104,7 +104,7 @@ export default class SigaController {
       const partialGrades = await getPartialGrades(cookie);
       return { partialGrades };
     } catch (error) {
-      return { error };
+      return { error: error.message };
     }
   }
 
@@ -114,7 +114,7 @@ export default class SigaController {
       const enrolledDisciplines = await getEnrolledDisciplines(cookie);
       return { enrolledDisciplines };
     } catch (error) {
-      return { error };
+      return { error: error.message };
     }
   }
 
