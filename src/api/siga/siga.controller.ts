@@ -13,6 +13,7 @@ import {
 import { sign } from 'jsonwebtoken';
 import { r } from 'rukia-core-hapi';
 import environment from '../../configs/environment.config';
+import { groupBy } from '../../utils';
 import { login } from './siga.schema';
 
 export default class SigaController {
@@ -81,7 +82,36 @@ export default class SigaController {
   async getSchedules(request: any, _h: any) {
     try {
       const cookie = request.auth.credentials.cookie;
-      const schedules = await getSchedules(cookie);
+      const schedulesRaw = await getSchedules(cookie);
+
+      const schedules = schedulesRaw.map((s) => {
+        const periods = s.periods;
+        const disciplines = groupBy('code')(periods.map((x: any) => x.discipline));
+
+        const periodsNew = Object.keys(disciplines).map((key: string) => {
+
+          const discipline = disciplines[key][0];
+
+          const hours = s.periods.filter((x: any) => x.discipline.code === discipline.code);
+
+          return {
+            startAt: hours[0].startAt,
+            endAt: hours[hours.length - 1].endAt,
+            discipline: {
+              code: discipline.code,
+              name: discipline.name,
+              teacherName: discipline.teacherName,
+              classroomCode: discipline.classroomCode,
+            },
+          };
+        });
+
+        return {
+          weekday: s.weekday,
+          periods: periodsNew,
+        };
+      });
+
       return { schedules };
     } catch (error) {
       return { error: error.message };
