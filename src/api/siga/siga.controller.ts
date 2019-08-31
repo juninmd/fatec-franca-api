@@ -22,8 +22,9 @@ export default class SigaController {
     try {
       const { login, password } = query;
       const cookie = await getLogin({ username: login, password });
+      const profile = await getProfile(cookie);
       const token = sign({ cookie, login, password }, environment.plugins.auth.secret);
-      return { cookie, token };
+      return { cookie, token, profile };
     } catch (error) {
       return { error: error.message };
     }
@@ -92,8 +93,8 @@ export default class SigaController {
 
           const discipline = disciplines[key][0];
 
-          const hours = s.periods.filter((x: any) => x.discipline.code === discipline.code)
-            .sort((q, e) => e.startAt.getTime() - q.startAt.getTime());
+          const hours = s.periods.filter(x => x.discipline.code === discipline.code)
+            .sort((q, e) => q.startAt.getTime() - e.startAt.getTime());
 
           return {
             startAt: hours[0].startAt,
