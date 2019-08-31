@@ -92,7 +92,8 @@ export default class SigaController {
 
           const discipline = disciplines[key][0];
 
-          const hours = s.periods.filter((x: any) => x.discipline.code === discipline.code);
+          const hours = s.periods.filter((x: any) => x.discipline.code === discipline.code)
+            .sort((q, e) => e.startAt.getTime() - q.startAt.getTime());
 
           return {
             startAt: hours[0].startAt,
