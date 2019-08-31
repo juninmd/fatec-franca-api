@@ -12,6 +12,3 @@ cd "$(dirname "$0")/.."
 
 export NODE_ENV="test"
 ./node_modules/.bin/tsc
-node_modules/.bin/sequelize db:migrate:undo:all
-node_modules/.bin/sequelize db:migrate
-node_modules/.bin/sequelize db:seed:all

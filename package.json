@@ -20,8 +20,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "npm run lint",
-      "pre-push": "npm run test"
+      "pre-commit": "npm run lint"
     }
   },
   "repository": {
@@ -52,9 +51,7 @@
     "jsonwebtoken": "^8.5.1",
     "moment": "^2.24.0",
     "mysql2": "^1.6.5",
-    "rukia-core-hapi": "^0.0.10",
-    "sequelize": "^5.16.0",
-    "sequelize-cli": "^5.5.0"
+    "rukia-core-hapi": "^0.0.10"
   },
   "devDependencies": {
     "@types/hapi__boom": "^7.4.1",
@@ -63,7 +60,6 @@
     "@types/jest": "^24.0.17",
     "@types/jsonwebtoken": "^8.3.3",
     "@types/node": "^12.6.9",
-    "@types/sequelize": "^4.28.4",
     "@types/validator": "^10.11.3",
     "husky": "^3.0.4",
     "jest": "^24.9.0",

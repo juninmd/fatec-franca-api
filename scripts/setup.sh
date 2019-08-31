@@ -9,12 +9,4 @@ cd "$(dirname "$0")/.."
 
 scripts/bootstrap
 
-echo "===> Setting up DB..."
-# reset database to a fresh state.
-node_modules/.bin/sequelize db:migrate:undo:all
-node_modules/.bin/sequelize db:migrate
-
-# Seed database
-node_modules/.bin/sequelize db:seed:all
-
-echo "==> App is now ready to go!"
+ echo "==> App is now ready to go!"
