@@ -1,3 +1,4 @@
+import { internal, unauthorized } from '@hapi/boom';
 import {
   getAcademicCalendar,
   getEnrolledDisciplines,
@@ -18,7 +19,7 @@ import { login } from './siga.schema';
 
 export default class SigaController {
 
-  async login({ query }: r<typeof login>, _h: any) {
+  async login({ query }: r<typeof login>) {
     try {
       const { login, password } = query;
       const cookie = await getLogin({ username: login, password });
@@ -26,61 +27,61 @@ export default class SigaController {
       const token = sign({ cookie, login, password }, environment.plugins.auth.secret);
       return { cookie, token, profile };
     } catch (error) {
-      return { error: error.message };
+      throw unauthorized(error.message);
     }
   }
 
-  async getName(request: any, _h: any) {
+  async getName(request: any) {
     try {
       const cookie = request.auth.credentials.cookie;
       const name = await getName(cookie);
       return { name };
     } catch (error) {
-      return { error: error.message };
+      throw internal(error.message);
     }
   }
 
-  async getProfile(request: any, _h: any) {
+  async getProfile(request: any) {
     try {
       const cookie = request.auth.credentials.cookie;
       const profile = await getProfile(cookie);
       return { profile };
     } catch (error) {
-      return { error: error.message };
+      throw internal(error.message);
     }
   }
 
-  async getAcademicCalendar(request: any, _h: any) {
+  async getAcademicCalendar(request: any) {
     try {
       const cookie = request.auth.credentials.cookie;
       const academicCalendar = await getAcademicCalendar(cookie);
       return { academicCalendar };
     } catch (error) {
-      return { error: error.message };
+      throw internal(error.message);
     }
   }
 
-  async getSchoolGrade(request: any, _h: any) {
+  async getSchoolGrade(request: any) {
     try {
       const cookie = request.auth.credentials.cookie;
       const schoolGrade = await getSchoolGrade(cookie);
       return { schoolGrade };
     } catch (error) {
-      return { error: error.message };
+      throw internal(error.message);
     }
   }
 
-  async getHistory(request: any, _h: any) {
+  async getHistory(request: any) {
     try {
       const cookie = request.auth.credentials.cookie;
       const history = await getHistory(cookie);
       return { history };
     } catch (error) {
-      return { error: error.message };
+      throw internal(error.message);
     }
   }
 
-  async getSchedules(request: any, _h: any) {
+  async getSchedules(request: any) {
     try {
       const cookie = request.auth.credentials.cookie;
       const schedulesRaw = await getSchedules(cookie);
@@ -116,37 +117,37 @@ export default class SigaController {
 
       return { schedules };
     } catch (error) {
-      return { error: error.message };
+      throw internal(error.message);
     }
   }
 
-  async getRegisteredEmails(request: any, _h: any) {
+  async getRegisteredEmails(request: any) {
     try {
       const cookie = request.auth.credentials.cookie;
       const email = await getRegisteredEmails(cookie);
       return { email };
     } catch (error) {
-      return { error: error.message };
+      throw internal(error.message);
     }
   }
 
-  async getPartialGrades(request: any, _h: any) {
+  async getPartialGrades(request: any) {
     try {
       const cookie = request.auth.credentials.cookie;
       const partialGrades = await getPartialGrades(cookie);
       return { partialGrades };
     } catch (error) {
-      return { error: error.message };
+      throw internal(error.message);
     }
   }
 
-  async getEnrolledDisciplines(request: any, _h: any) {
+  async getEnrolledDisciplines(request: any) {
     try {
       const cookie = request.auth.credentials.cookie;
       const enrolledDisciplines = await getEnrolledDisciplines(cookie);
       return { enrolledDisciplines };
     } catch (error) {
-      return { error: error.message };
+      throw internal(error.message);
     }
   }
 
