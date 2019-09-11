@@ -24,6 +24,8 @@ export default class SigaController {
       const { login, password } = query;
       const cookie = await getLogin({ username: login, password });
       const profile = await getProfile(cookie);
+      const name = await getName(cookie);
+      profile.name = name;
       const token = sign({ cookie, login, password }, environment.plugins.auth.secret);
       return { cookie, token, profile };
     } catch (error) {
