@@ -96,8 +96,26 @@ export default class SigaController {
 
           const discipline = disciplines[key][0];
 
-          const hours = s.periods.filter(x => x.discipline.code === discipline.code)
-            .sort((q, e) => q.startAt.getTime() - e.startAt.getTime());
+          const hours = (s.periods.filter(x => x.discipline.code === discipline.code))
+            .sort((q, e) => {
+              if (q.startAt.getHours() < e.startAt.getHours()) {
+                return -1;
+              }
+
+              if (q.startAt.getHours() > e.startAt.getHours()) {
+                return 1;
+              }
+
+              if (q.startAt.getMinutes() < e.startAt.getMinutes()) {
+                return -1;
+              }
+
+              if (q.startAt.getMinutes() > e.startAt.getMinutes()) {
+                return 1;
+              }
+
+              return 0;
+            });
 
           return {
             startAt: hours[0].startAt,
@@ -106,6 +124,7 @@ export default class SigaController {
               code: discipline.code,
               name: discipline.name,
               teacherName: discipline.teacherName,
+              frequency: discipline.frequency,
               classroomCode: discipline.classroomCode,
             },
           };
