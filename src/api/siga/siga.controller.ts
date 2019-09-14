@@ -12,14 +12,12 @@ import {
   login as getLogin,
 } from 'fatec-franca-core-api';
 import { sign } from 'jsonwebtoken';
-import { r } from 'rukia-core-hapi';
 import environment from '../../configs/environment.config';
 import { groupBy } from '../../utils';
-import { login } from './siga.schema';
 
 export default class SigaController {
 
-  async login({ query }: r<typeof login>) {
+  async login({ query }: any) {
     try {
       const { login, password } = query;
       const cookie = await getLogin({ username: login, password });
@@ -39,6 +37,9 @@ export default class SigaController {
       const name = await getName(cookie);
       return { name };
     } catch (error) {
+      if (error.message === 'Não logado') {
+        throw unauthorized(error.message);
+      }
       throw internal(error.message);
     }
   }
@@ -49,6 +50,9 @@ export default class SigaController {
       const profile = await getProfile(cookie);
       return { profile };
     } catch (error) {
+      if (error.message === 'Não logado') {
+        throw unauthorized(error.message);
+      }
       throw internal(error.message);
     }
   }
@@ -59,6 +63,9 @@ export default class SigaController {
       const academicCalendar = await getAcademicCalendar(cookie);
       return { academicCalendar };
     } catch (error) {
+      if (error.message === 'Não logado') {
+        throw unauthorized(error.message);
+      }
       throw internal(error.message);
     }
   }
@@ -69,6 +76,9 @@ export default class SigaController {
       const schoolGrade = await getSchoolGrade(cookie);
       return { schoolGrade };
     } catch (error) {
+      if (error.message === 'Não logado') {
+        throw unauthorized(error.message);
+      }
       throw internal(error.message);
     }
   }
@@ -79,6 +89,9 @@ export default class SigaController {
       const history = await getHistory(cookie);
       return { history };
     } catch (error) {
+      if (error.message === 'Não logado') {
+        throw unauthorized(error.message);
+      }
       throw internal(error.message);
     }
   }
@@ -138,6 +151,9 @@ export default class SigaController {
 
       return { schedules };
     } catch (error) {
+      if (error.message === 'Não logado') {
+        throw unauthorized(error.message);
+      }
       throw internal(error.message);
     }
   }
@@ -148,6 +164,9 @@ export default class SigaController {
       const email = await getRegisteredEmails(cookie);
       return { email };
     } catch (error) {
+      if (error.message === 'Não logado') {
+        throw unauthorized(error.message);
+      }
       throw internal(error.message);
     }
   }
@@ -158,6 +177,9 @@ export default class SigaController {
       const partialGrades = await getPartialGrades(cookie);
       return { partialGrades };
     } catch (error) {
+      if (error.message === 'Não logado') {
+        throw unauthorized(error.message);
+      }
       throw internal(error.message);
     }
   }
@@ -168,6 +190,9 @@ export default class SigaController {
       const enrolledDisciplines = await getEnrolledDisciplines(cookie);
       return { enrolledDisciplines };
     } catch (error) {
+      if (error.message === 'Não logado') {
+        throw unauthorized(error.message);
+      }
       throw internal(error.message);
     }
   }
